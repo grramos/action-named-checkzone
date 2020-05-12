@@ -1,0 +1,9 @@
+name: 'Named-Checkzone'
+author: 'Gustavo Ramos'
+description: 'Checks the syntax and integrity of ISC BIND/named zone files'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'code'
+  color: 'red'
