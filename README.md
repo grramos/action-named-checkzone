@@ -1,6 +1,6 @@
 # Named Checkzone
 
-A Github action to to check the syntax and integrity of zone files in a repository using `named-checkzone`. It only check files with using the naming format `db.<zone>`, for example, `db.example.com` has DNS records for `example.com` zone.
+A Github action to to check the syntax and integrity of BIND-compatible zone files in a repository using `named-checkzone`. It only checks files with names starting with `db.` prefix and followed by the zone, ie. `db.example.com` stores DNS records for `example.com` zone.
 
 ## Usage
 
