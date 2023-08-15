@@ -1,19 +1,20 @@
-#!/bin/bash
+#!/bin/bash        
+set -ex
 
-rc=0
 
 if [ -z "$(which named-checkzone)" ]; then
-  echo "named-checkzone is missing. Ensure you have the bind9utils installed."
-  exit 1
+    echo "named-checkzone is missing. Ensure you have the bind9utils installed."
+    exit 1
 fi
-
-find $GITHUB_WORKSPACE -type f -name 'db.*' |
+prefix='.*db.'
+find . -type f -name 'db.*' |
 while read zonefile; do
-    zone=`echo $zonefile | sed -e "s/^\/.*\/db\.\(.*\)$/\1/"`
-    named-checkzone $zone $zonefile
+    zone=`echo $zonefile | sed -e "s/^$prefix//"`
+    named-checkzone -d -k fail -n fail -m fail -M fail $zone $zonefile
+
     if [ $? -ne 0 ]; then
-      rc=1
+        exit $?
     fi
 done
 
-exit $rc
+exit
